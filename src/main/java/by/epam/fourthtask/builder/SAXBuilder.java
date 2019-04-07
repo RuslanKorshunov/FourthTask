@@ -1,6 +1,8 @@
 package by.epam.fourthtask.builder;
 
 import by.epam.fourthtask.entity.Gem;
+import by.epam.fourthtask.exception.BuilderInitializationException;
+import by.epam.fourthtask.exception.ParsingException;
 import by.epam.fourthtask.handler.SAXHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,29 +20,22 @@ public class SAXBuilder extends AbstractBuilder
     private SAXHandler handler;
     private XMLReader reader;
 
-    public SAXBuilder()
+    public SAXBuilder() throws BuilderInitializationException
     {
-        super();
         handler=new SAXHandler();
         try
         {
             reader=XMLReaderFactory.createXMLReader();
             reader.setContentHandler(handler);
         }
-        catch (SAXException e)//TODO создать свое иключение
+        catch (SAXException e)
         {
-            logger.error(e);
+            throw new BuilderInitializationException("DOMBuilder couldn't be created.");
         }
     }
 
     @Override
-    public List<Gem> getGems()
-    {
-        return super.getGems();
-    }
-
-    @Override
-    public void buildGems(String filePath)
+    public List<Gem> buildGems(String filePath) throws ParsingException
     {
         try
         {
@@ -48,8 +43,8 @@ public class SAXBuilder extends AbstractBuilder
         }
         catch (SAXException| IOException e)
         {
-            logger.error(e);
+            throw new ParsingException("SAXBuilder can't parse "+filePath+".");
         }
-        gems=handler.getGems();
+        return handler.getGems();
     }
 }

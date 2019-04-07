@@ -1,24 +1,14 @@
 package by.epam.fourthtask.builder;
 
 import by.epam.fourthtask.entity.Gem;
+import by.epam.fourthtask.exception.ParsingException;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractBuilder
 {
-    protected List<Gem> gems;
-
-    public AbstractBuilder()
+    public List<Gem> buildGems(String filePath) throws ParsingException
     {
-        gems=new ArrayList<>();
+        return null;
     }
-
-    public List<Gem> getGems()
-    {
-        return gems;
-    }
-
-    public void buildGems(String filePath)
-    {}
 }
