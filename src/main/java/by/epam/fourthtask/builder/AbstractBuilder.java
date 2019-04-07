@@ -5,7 +5,7 @@ import by.epam.fourthtask.exception.ParsingException;
 
 import java.util.List;
 
-public abstract class AbstractBuilder
+public abstract class AbstractBuilder//TODO может, лучше сделать интерфейс?
 {
     public List<Gem> buildGems(String filePath) throws ParsingException
     {

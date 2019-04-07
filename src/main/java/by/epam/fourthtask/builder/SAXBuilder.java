@@ -4,8 +4,6 @@ import by.epam.fourthtask.entity.Gem;
 import by.epam.fourthtask.exception.BuilderInitializationException;
 import by.epam.fourthtask.exception.ParsingException;
 import by.epam.fourthtask.handler.SAXHandler;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLReaderFactory;
@@ -15,8 +13,6 @@ import java.util.List;
 
 public class SAXBuilder extends AbstractBuilder
 {
-    private static final Logger logger= LogManager.getLogger(SAXBuilder.class);
-
     private SAXHandler handler;
     private XMLReader reader;
 
