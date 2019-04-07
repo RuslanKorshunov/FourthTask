@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gems>
+    <gem>
+        <name>Дом Педро</name>
+        <kind>аквамарин</kind>
+        <preciousness>драгоценный</preciousness>
+        <origin>Бразилия</origin>
+        <parameters>
+            <color>светло-голубой</color>
+            <transparency>30</transparency>
+            <faceting>обелиск</faceting>
+        </parameters>
+        <weight>10363</weight>
+    </gem>
+    <gem>
+        <name>Алмаз Регента</name>
+        <kind>алмаз</kind>
+        <preciousness>драгоценный</preciousness>
+        <origin>Индия</origin>
+        <parameters>
+            <color>белый</color>
+            <transparency>40</transparency>
+            <faceting>круглая бриллиантовая огранка</faceting>
+        </parameters>
+        <weight>140.4</weight>
+    </gem>
+    <gem>
+        <name>Дерианур</name>
+        <kind>алмаз</kind>
+        <preciousness>драгоценный</preciousness>
+        <origin>Индия</origin>
+        <parameters>
+            <color>бледно-розовый</color>
+            <transparency>20</transparency>
+            <faceting>круглая бриллиантовая огранка</faceting>
+        </parameters>
+        <weight>182</weight>
+    </gem>
+    <gem>
+        <name>Дрезденский бриллиант</name>
+        <kind>алмаз</kind>
+        <preciousness>драгоценный</preciousness>
+        <origin>Индия</origin>
+        <parameters>
+            <color>зеленый</color>
+            <transparency>20</transparency>
+            <faceting>грушевидная</faceting>
+        </parameters>
+        <weight>41</weight>
+    </gem>
+    <gem>
+        <name>Австалийский Олимпийский</name>
+        <kind>опал</kind>
+        <preciousness>полудрагоценный</preciousness>
+        <origin>Австралия</origin>
+        <parameters>
+            <color>зеленый</color>
+            <transparency>50</transparency>
+            <faceting>не огранен</faceting>
+        </parameters>
+        <weight>17000</weight>
+    </gem>
+    <gem>
+        <name>Шах Акбар</name>
+        <kind>алмаз</kind>
+        <preciousness>драгоценный</preciousness>
+        <origin>Индия</origin>
+        <parameters>
+            <color>белый</color>
+            <transparency>30</transparency>
+            <faceting>капля</faceting>
+        </parameters>
+        <weight>72</weight>
+    </gem>
+    <gem>
+        <name>Флорентиец</name>
+        <kind>алмаз</kind>
+        <preciousness>драгоценный</preciousness>
+        <origin>Индия</origin>
+        <parameters>
+            <color>желтый</color>
+            <transparency>30</transparency>
+            <faceting>капля</faceting>
+        </parameters>
+        <weight>137.45</weight>
+    </gem>
+    <gem>
+        <name>Рубин Делонга</name>
+        <kind>рубин</kind>
+        <preciousness>драгоценный</preciousness>
+        <origin>Бирма</origin>
+        <parameters>
+            <color>красный</color>
+            <transparency>60</transparency>
+            <faceting>овал</faceting>
+        </parameters>
+        <weight>100.32</weight>
+    </gem>
+    <gem>
+        <name>Рубин Тимура</name>
+        <kind>красный шпинель</kind>
+        <preciousness>полудрагоценный</preciousness>
+        <origin>Бирма</origin>
+        <parameters>
+            <color>красный</color>
+            <transparency>60</transparency>
+            <faceting>овал</faceting>
+        </parameters>
+        <weight>361</weight>
+    </gem>
+    <gem>
+        <name>Рубин Чёрного принца</name>
+        <kind>красный шпинель</kind>
+        <preciousness>полудрагоценный</preciousness>
+        <origin>Испания</origin>
+        <parameters>
+            <color>красный
+            </color>
+            <transparency>70</transparency>
+            <faceting>овал</faceting>
+        </parameters>
+        <weight>361</weight>
+    </gem>
+</gems>

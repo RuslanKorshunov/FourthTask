@@ -4,7 +4,7 @@
     <title>Fourth Task</title>
   </head>
   <body>
-  <form action="Servlet">
+  <form action="ControlServlet">
       <input type="submit" value="Execute">
   </form>
   </body>
