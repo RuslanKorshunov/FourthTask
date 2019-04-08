@@ -15,17 +15,14 @@ import javax.xml.stream.XMLStreamReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class StAXBuilder extends AbstractBuilder
 {
     private static final Logger logger= LogManager.getLogger(StAXBuilder.class);
 
     @Override
-    public List<Gem> buildGems(String filePath) throws ParsingException
+    public void buildGems(String filePath) throws ParsingException
     {
-        List<Gem> gems=new ArrayList<>();
         FileInputStream input=null;
         XMLStreamReader reader=null;
         try
@@ -39,7 +36,7 @@ public class StAXBuilder extends AbstractBuilder
                 if(type== XMLStreamConstants.START_ELEMENT)
                 {
                     String name=reader.getLocalName();
-                    GemEnum gemEnum=GemEnum.GEM;
+                    GemEnum gemEnum= GemEnum.GEM;
                     if(name.equals(gemEnum.getValue()))
                     {
                         Gem gem=buildGem(reader);
@@ -81,7 +78,6 @@ public class StAXBuilder extends AbstractBuilder
                 }
             }
         }
-        return gems;
     }
 
     private Gem buildGem(XMLStreamReader reader) throws XMLStreamException, IncorrectDataException
@@ -143,7 +139,7 @@ public class StAXBuilder extends AbstractBuilder
                     break;
                 case XMLStreamConstants.END_ELEMENT:
                     name=reader.getLocalName();//TODO???
-                    GemEnum gemEnum=GemEnum.GEM;
+                    GemEnum gemEnum= GemEnum.GEM;
                     if(name.equals(gemEnum.getValue()))
                     {
                         return gem;

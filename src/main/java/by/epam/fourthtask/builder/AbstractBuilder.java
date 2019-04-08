@@ -3,12 +3,22 @@ package by.epam.fourthtask.builder;
 import by.epam.fourthtask.entity.Gem;
 import by.epam.fourthtask.exception.ParsingException;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractBuilder//TODO может, лучше сделать интерфейс?
+public abstract class AbstractBuilder
 {
-    public List<Gem> buildGems(String filePath) throws ParsingException
+    protected List<Gem> gems;
+
+    public AbstractBuilder()
     {
-        return null;
+        gems=new ArrayList<>();
     }
+
+    public List<Gem> getGems()
+    {
+        return gems;
+    }
+
+    public abstract void buildGems(String filePath) throws ParsingException;
 }

@@ -17,8 +17,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class DOMBuilder extends AbstractBuilder
 {
@@ -40,9 +38,8 @@ public class DOMBuilder extends AbstractBuilder
     }
 
     @Override
-    public List<Gem> buildGems(String filePath) throws ParsingException
+    public void buildGems(String filePath) throws ParsingException
     {
-        List<Gem> gems=new ArrayList<>();
         Document document;
         try
         {
@@ -58,37 +55,36 @@ public class DOMBuilder extends AbstractBuilder
         }
         catch (SAXException| IOException e)
         {
-            throw new ParsingException("DOMBuilder can't parse "+filePath+".");
+            throw new ParsingException("DOMBuilder can't parse "+filePath+".", e);
         }
-        return gems;
     }
 
     private Gem buildGem(Element elementGem)
     {
         Gem gem=new Gem();
-        GemEnum gemEnum=GemEnum.NAME;
+        GemEnum gemEnum= GemEnum.NAME;
 
         try
         {
             gem.setName(findContent(elementGem, gemEnum.getValue()));
-            gemEnum=GemEnum.KIND;
+            gemEnum= GemEnum.KIND;
             gem.setKind(findContent(elementGem, gemEnum.getValue()));
-            gemEnum=GemEnum.PRECIOUSNESS;
+            gemEnum= GemEnum.PRECIOUSNESS;
             gem.setPreciousness(findContent(elementGem, gemEnum.getValue()));
-            gemEnum=GemEnum.ORIGIN;
+            gemEnum= GemEnum.ORIGIN;
             gem.setOrigin(findContent(elementGem, gemEnum.getValue()));
-            gemEnum=GemEnum.COLOR;
+            gemEnum= GemEnum.COLOR;
             gem.setColor(findContent(elementGem, gemEnum.getValue()));
-            gemEnum=GemEnum.FACETING;
+            gemEnum= GemEnum.FACETING;
             gem.setFaceting(findContent(elementGem, gemEnum.getValue()));
-            gemEnum=GemEnum.TRANSPARENCY;
+            gemEnum= GemEnum.TRANSPARENCY;
             double value=Double.parseDouble(findContent(elementGem, gemEnum.getValue()));
             gem.setTransparency(value);
-            gemEnum=GemEnum.WEIGHT;
+            gemEnum= GemEnum.WEIGHT;
             value=Double.parseDouble(findContent(elementGem, gemEnum.getValue()));
             gem.setWeight(value);
         }
-        catch (IncorrectDataException |NumberFormatException e)//TODO ??NumberFormatException
+        catch (IncorrectDataException|NumberFormatException e)//TODO ??NumberFormatException
         {
             logger.error(e);
         }

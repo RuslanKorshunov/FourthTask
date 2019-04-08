@@ -1,6 +1,5 @@
 package by.epam.fourthtask.builder;
 
-import by.epam.fourthtask.entity.Gem;
 import by.epam.fourthtask.exception.BuilderInitializationException;
 import by.epam.fourthtask.exception.ParsingException;
 import by.epam.fourthtask.handler.SAXHandler;
@@ -9,7 +8,6 @@ import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLReaderFactory;
 
 import java.io.IOException;
-import java.util.List;
 
 public class SAXBuilder extends AbstractBuilder
 {
@@ -31,7 +29,7 @@ public class SAXBuilder extends AbstractBuilder
     }
 
     @Override
-    public List<Gem> buildGems(String filePath) throws ParsingException
+    public void buildGems(String filePath) throws ParsingException
     {
         try
         {
@@ -41,6 +39,6 @@ public class SAXBuilder extends AbstractBuilder
         {
             throw new ParsingException("SAXBuilder can't parse "+filePath+".");
         }
-        return handler.getGems();
+        gems=handler.getGems();
     }
 }
