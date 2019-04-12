@@ -2,9 +2,8 @@ package by.epam.fourthtask.entity;
 
 public enum GemEnum
 {
-    GEMS("gems"),
-    GEM("gem"),
     NAME("name"),
+    GEM("gem"),
     KIND("kind"),
     PRECIOUSNESS("preciousness"),
     ORIGIN("origin"),

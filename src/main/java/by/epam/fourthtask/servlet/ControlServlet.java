@@ -29,6 +29,7 @@ public class ControlServlet extends HttpServlet
     private static final String FILE="file";
     private static final String BUTTON="button";
     private static final String WEB_INF="WEB-INF";
+    private static final String GEMS="gems";
     private static final Logger logger= LogManager.getLogger(ControlServlet.class);
 
     @Override
@@ -72,8 +73,9 @@ public class ControlServlet extends HttpServlet
                 default:
                     throw new IncorrectDataException("buttonValue="+buttonValue+" has unknown value.");
             }
-
             file.delete();
+            request.setAttribute(GEMS, builder.getGems());
+            request.getRequestDispatcher("jsp/result.jsp").forward(request, response);
         }
         catch (ParsingException|BuilderInitializationException|IncorrectDataException e)
         {
