@@ -4,6 +4,10 @@ import by.epam.fourthtask.exception.IncorrectDataException;
 
 public class Gem
 {
+    private static final int MIN_TRANSPARENCY=0;
+    private static final int MAX_TRANSPARENCY=100;
+    private static final int MIN_WEIGHT=0;
+
     private String name="";
     private String kind="";
     private String preciousness="";
@@ -59,7 +63,7 @@ public class Gem
 
     public void setTransparency(Double transparency) throws IncorrectDataException
     {
-        if(transparency>=0 && transparency<=100)
+        if(transparency>=MIN_TRANSPARENCY && transparency<=MAX_TRANSPARENCY)
         {
             this.transparency = transparency;
         }
@@ -84,7 +88,7 @@ public class Gem
 
     public void setWeight(double weight) throws IncorrectDataException
     {
-        if(weight>0)
+        if(weight>MIN_WEIGHT)
         {
             this.weight = weight;
         }

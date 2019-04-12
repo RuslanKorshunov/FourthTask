@@ -2,23 +2,25 @@ package by.epam.fourthtask.tag;
 
 import by.epam.fourthtask.entity.Gem;
 import by.epam.fourthtask.entity.GemEnum;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;
 import java.util.List;
-import java.util.Locale;
 
 @SuppressWarnings("serial")
 public class TableTag extends TagSupport
 {
+    private static final Logger logger= LogManager.getLogger(TableTag.class);
+
     private List<Gem> gems;
 
     public void setGems(List<Gem> gems)
     {
         this.gems=gems;
-
     }
 
     @Override
@@ -36,7 +38,7 @@ public class TableTag extends TagSupport
         }
         catch(IOException e)
         {
-
+            logger.error(e);
         }
         return SKIP_BODY;
     }
@@ -51,6 +53,7 @@ public class TableTag extends TagSupport
         }
         catch (IOException e)
         {
+            logger.error(e);
         }
         return EVAL_PAGE;
     }
@@ -59,9 +62,6 @@ public class TableTag extends TagSupport
     {
         out.write("<table border='1'><colgroup span='2' title='title' />");
         out.write("<caption>"+ "RESULT" +"</caption>");
-
-        String header="<thead><tr>";
-
         for(GemEnum gemEnum: GemEnum.values())
         {
             switch (gemEnum)
@@ -75,15 +75,10 @@ public class TableTag extends TagSupport
                 case COLOR:
                 case KIND:
                     out.write("<th scope='col'>"+gemEnum.getValue()+"</th>");
-                    //header+="<th scope='col'>"+gemEnum.getValue()+"</th>";
                     break;
             }
         }
-
         out.write("</tr></thead>");
-        /*header+="</tr></thead>";
-        out.write(header);*/
-        //out.write("<thead><tr><th scope='col'>"+"hello"+"</th></tr></thead>");
     }
 
     private void writeData(JspWriter out, Gem gem) throws IOException

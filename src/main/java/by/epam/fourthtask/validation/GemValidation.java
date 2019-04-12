@@ -2,7 +2,7 @@ package by.epam.fourthtask.validation;
 
 import by.epam.fourthtask.entity.Gem;
 
-public class GemValidation //TODO нужно так делать?
+public class GemValidation
 {
     private static final int MAX_TRANSPARENCY=50;
 

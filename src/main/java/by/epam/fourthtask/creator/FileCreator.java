@@ -35,7 +35,7 @@ public class FileCreator
         }
         catch (IOException e)
         {
-            throw new IncorrectDataException("FileCreator can't write in file with name "+name+" in "+directory+" data.", e);
+            throw new IncorrectDataException("FileCreator can't write in file with name "+name+" in "+directory+" data.");
         }
         finally
         {
@@ -47,7 +47,7 @@ public class FileCreator
                 }
                 catch (IOException e)
                 {
-                    logger.warn("Impossible close writer.", e);
+                    logger.warn("Impossible close writer.");
                 }
             }
         }

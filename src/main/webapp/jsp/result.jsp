@@ -7,8 +7,9 @@
 </head>
 <body>
     <c:import url="date.jsp"/>
-    <form action="ControlServlet">
-        <ctg:table gems="${ gems }"></ctg:table>
+    <ctg:table gems="${ gems }"></ctg:table>
+    <form action="ControlServlet" method="get">
+        <input type="hidden" name="referer" value="${referer}">
         <input type="submit" value="Go back">
     </form>
 </body>

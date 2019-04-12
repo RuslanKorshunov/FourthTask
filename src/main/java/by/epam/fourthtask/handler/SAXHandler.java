@@ -99,7 +99,7 @@ public class SAXHandler extends DefaultHandler
                     {
                         currentGem.setWeight(Double.parseDouble(characteristic));
                     }
-                    catch (IncorrectDataException | NumberFormatException e)//TODO???
+                    catch (IncorrectDataException | NumberFormatException e)
                     {
                         logger.error(e);
                     }
@@ -117,12 +117,10 @@ public class SAXHandler extends DefaultHandler
                     {
                         currentGem.setTransparency(Double.parseDouble(characteristic));
                     }
-                    catch (IncorrectDataException | NumberFormatException e)//TODO???
+                    catch (IncorrectDataException | NumberFormatException e)
                     {
                         logger.error(e);
                     }
-                    break;
-                default://TODO что с этим сделать
                     break;
             }
         }

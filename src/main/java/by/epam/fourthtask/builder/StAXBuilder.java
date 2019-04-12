@@ -51,7 +51,7 @@ public class StAXBuilder extends AbstractBuilder
         }
         catch (XMLStreamException | FileNotFoundException | IncorrectDataException e)
         {
-            throw new ParsingException("StAXBuilder can't parse "+filePath+".", e);
+            throw new ParsingException("StAXBuilder can't parse "+filePath+".");
         }
         finally
         {
@@ -83,7 +83,6 @@ public class StAXBuilder extends AbstractBuilder
     private Gem buildGem(XMLStreamReader reader) throws XMLStreamException, IncorrectDataException
     {
         Gem gem=new Gem();
-
         while (reader.hasNext())
         {
             int type=reader.next();
@@ -116,7 +115,7 @@ public class StAXBuilder extends AbstractBuilder
                                 double number=Double.parseDouble(findXMLText(reader));
                                 gem.setTransparency(number);
                             }
-                            catch (IncorrectDataException | NumberFormatException e)//TODO???
+                            catch (IncorrectDataException | NumberFormatException e)
                             {
                                 logger.error(e);
                             }
@@ -130,7 +129,7 @@ public class StAXBuilder extends AbstractBuilder
                                 double number=Double.parseDouble(findXMLText(reader));
                                 gem.setWeight(number);
                             }
-                            catch (IncorrectDataException | NumberFormatException e)//TODO???
+                            catch (IncorrectDataException | NumberFormatException e)
                             {
                                 logger.error(e);
                             }
@@ -138,7 +137,7 @@ public class StAXBuilder extends AbstractBuilder
                     }
                     break;
                 case XMLStreamConstants.END_ELEMENT:
-                    name=reader.getLocalName();//TODO???
+                    name=reader.getLocalName();
                     GemEnum gemEnum= GemEnum.GEM;
                     if(name.equals(gemEnum.getValue()))
                     {
@@ -147,7 +146,7 @@ public class StAXBuilder extends AbstractBuilder
                     break;
             }
         }
-        throw new IncorrectDataException("");//TODO куда засунуть?
+        throw new IncorrectDataException("There was unknown tag.");
     }
 
     private String findXMLText(XMLStreamReader reader) throws XMLStreamException

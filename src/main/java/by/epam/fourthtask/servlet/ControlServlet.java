@@ -30,18 +30,36 @@ public class ControlServlet extends HttpServlet
     private static final String BUTTON="button";
     private static final String WEB_INF="WEB-INF";
     private static final String GEMS="gems";
+    private static final String REFERER="referer";
     private static final Logger logger= LogManager.getLogger(ControlServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        request.getRequestDispatcher("/jsp/result.jsp").forward(request ,response);
+        String hiddenParameter=request.getParameter(REFERER);
+        request.getRequestDispatcher(hiddenParameter).forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+        try
+        {
+            processRequest(request, response);
+        }
+        catch (ParsingException|BuilderInitializationException|IncorrectDataException e)
+        {
+            logger.error(e);
+        }
+    }
 
+    private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException,
+                                                                                        IOException,
+                                                                                        ParsingException,
+                                                                                        BuilderInitializationException,
+                                                                                        IncorrectDataException
+    {
+        System.out.println(request.getHeader(REFERER));
         Part filePart=request.getPart(FILE);
         String fileName=Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
         InputStream stream=filePart.getInputStream();
@@ -49,38 +67,33 @@ public class ControlServlet extends HttpServlet
 
         String directory=request.getServletContext().getRealPath("")+WEB_INF;
         FileCreator creator=new FileCreator();
-        try
+
+        File file=creator.create(directory, fileName, data);
+        String buttonParameter=request.getParameter(BUTTON);
+        FactoryEnum factoryEnum= FactoryEnum.valueOf(buttonParameter);
+        AbstractBuilder builder;
+        BuilderFactory builderFactory=new BuilderFactory();
+        switch (factoryEnum)
         {
-            File file=creator.create(directory, fileName, data);
-            String buttonValue=request.getParameter(BUTTON);
-            FactoryEnum factoryEnum= FactoryEnum.valueOf(buttonValue);
-            AbstractBuilder builder;
-            BuilderFactory builderFactory=new BuilderFactory();
-            switch (factoryEnum)
-            {
-                case DOM:
-                    builder=builderFactory.createBuilder(FactoryEnum.DOM);
-                    builder.buildGems(file.getAbsolutePath());
-                    break;
-                case SAX:
-                    builder=builderFactory.createBuilder(FactoryEnum.SAX);
-                    builder.buildGems(file.getAbsolutePath());
-                    break;
-                case StAX:
-                    builder=builderFactory.createBuilder(FactoryEnum.StAX);
-                    builder.buildGems(file.getAbsolutePath());
-                    break;
-                default:
-                    throw new IncorrectDataException("buttonValue="+buttonValue+" has unknown value.");
-            }
-            file.delete();
-            request.setAttribute(GEMS, builder.getGems());
-            request.getRequestDispatcher("jsp/result.jsp").forward(request, response);
+            case DOM:
+                builder=builderFactory.createBuilder(FactoryEnum.DOM);
+                builder.buildGems(file.getAbsolutePath());
+                break;
+            case SAX:
+                builder=builderFactory.createBuilder(FactoryEnum.SAX);
+                builder.buildGems(file.getAbsolutePath());
+                break;
+            case StAX:
+                builder=builderFactory.createBuilder(FactoryEnum.StAX);
+                builder.buildGems(file.getAbsolutePath());
+                break;
+            default:
+                throw new IncorrectDataException("buttonParameter="+buttonParameter+" has unknown value.");
         }
-        catch (ParsingException|BuilderInitializationException|IncorrectDataException e)
-        {
-            //TODO сделать таблицу error
-            logger.error(e);
-        }
+        file.delete();
+        String page="jsp/main.jsp";
+        request.setAttribute(REFERER, page);
+        request.setAttribute(GEMS, builder.getGems());
+        request.getRequestDispatcher("jsp/result.jsp").forward(request, response);
     }
 }

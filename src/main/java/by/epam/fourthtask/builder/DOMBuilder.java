@@ -55,15 +55,14 @@ public class DOMBuilder extends AbstractBuilder
         }
         catch (SAXException| IOException e)
         {
-            throw new ParsingException("DOMBuilder can't parse "+filePath+".", e);
+            throw new ParsingException("DOMBuilder can't parse "+filePath+".");
         }
     }
 
     private Gem buildGem(Element elementGem)
     {
         Gem gem=new Gem();
-        GemEnum gemEnum= GemEnum.NAME;
-
+        GemEnum gemEnum=GemEnum.NAME;
         try
         {
             gem.setName(findContent(elementGem, gemEnum.getValue()));
@@ -84,11 +83,10 @@ public class DOMBuilder extends AbstractBuilder
             value=Double.parseDouble(findContent(elementGem, gemEnum.getValue()));
             gem.setWeight(value);
         }
-        catch (IncorrectDataException|NumberFormatException e)//TODO ??NumberFormatException
+        catch (IncorrectDataException|NumberFormatException e)
         {
             logger.error(e);
         }
-
         return gem;
     }
 
